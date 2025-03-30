@@ -7,6 +7,7 @@ import 'package:hospital/Domain/doctor/doctor_model.dart';
 import 'package:hospital/Domain/doctor/doctor_service.dart';
 import 'package:hospital/Presentation/Member/payment.dart';
 import 'package:hospital/Presentation/common/book_widget.dart';
+import 'package:hospital/Presentation/common/snackbar.dart';
 import 'package:hospital/constants/const.dart';
 
 class BookingPage extends StatelessWidget {
@@ -140,9 +141,8 @@ class BookingPage extends StatelessWidget {
                                   (r) => BookFieldWidget(
                                     selectedDepartment: selectedDepartment,
                                     onChanged: (selectedName) {
-                                      selectedDoctor = r.firstWhere(
-                                          (doctor) =>
-                                              doctor.name == selectedName);
+                                      selectedDoctor = r.firstWhere((doctor) =>
+                                          doctor.name == selectedName);
                                     },
                                     title: 'Doctors',
                                     list: r.map((e) => e.name!).toList(),
@@ -159,8 +159,8 @@ class BookingPage extends StatelessWidget {
                                           textStyle: TextStyle(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16.sp,
-                                        color: const Color.fromRGBO(
-                                            39, 39, 39, 1),
+                                        color:
+                                            const Color.fromRGBO(39, 39, 39, 1),
                                       ))),
                                   InkWell(
                                     onTap: () => selectDate(context),
@@ -301,6 +301,15 @@ class BookingPage extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
+                            if (selectedDoctor == null ||
+                                symptomsController.text.isEmpty ||
+                                additionalDetailsController.text.isEmpty) {
+                              displaySnackBar(
+                                  context: context,
+                                  text: 'Please fill all the fields');
+                              return;
+                            }
+
                             final formattedDate =
                                 "${selectedDate.value.year}-${selectedDate.value.month.toString().padLeft(2, '0')}-${selectedDate.value.day.toString().padLeft(2, '0')}";
                             Navigator.of(context).push(MaterialPageRoute(
@@ -308,17 +317,10 @@ class BookingPage extends StatelessWidget {
                                       doctor: Doctor(
                                           doctor: selectedDoctor!.email!,
                                           symptoms: symptomsController.text,
-                                          details: additionalDetailsController
-                                              .text,
+                                          details:
+                                              additionalDetailsController.text,
                                           date: formattedDate),
                                     )));
-              
-                            // BlocProvider.of<BookingCubit>(context)
-                            //     .bookAppointment(Doctor(
-                            //         doctor: selectedDoctor!.email!,
-                            //         symptoms: symptomsController.text,
-                            //         details: additionalDetailsController.text,
-                            //         date: formattedDate));
                           },
                           style: ButtonStyle(
                             minimumSize:
