@@ -5,7 +5,7 @@ displaySnackBar({required BuildContext context, required String text}) {
     SnackBar(
       content: Text(
         text,
-        style: const TextStyle(fontSize: 20),
+        style: const TextStyle(fontSize: 15),
       ),
       duration: const Duration(seconds: 2),
     ),

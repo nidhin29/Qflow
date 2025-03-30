@@ -5,11 +5,14 @@ import 'package:hospital/Presentation/Member/booking.dart';
 import 'package:hospital/Presentation/Profile/profile.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+   MainScreen({super.key});
 
-  static final ValueNotifier<int> _selectedIndexNotifier =
-      ValueNotifier<int>(0);
-  static final PageController _pageController = PageController();
+  final ValueNotifier<int> _selectedIndexNotifier = ValueNotifier<int>(0);
+
+  final PageController _pageController = PageController();
+
+  @override
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,36 +45,15 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-// class PageContent extends StatelessWidget {
-//   final ValueNotifier<int> selectedIndexNotifier;
-
-//   const PageContent({super.key, required this.selectedIndexNotifier});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ValueListenableBuilder<int>(
-//       valueListenable: selectedIndexNotifier,
-//       builder: (context, selectedIndex, _) {
-//         return IndexedStack(
-//           index: selectedIndex,
-//           children: [
-//             const HomeScreen(),
-//             MemberScreen(),
-//             const ProfileScreen(),
-//           ],
-//         );
-//       },
-//     );
-//   }
-// }
-
 class CustomNavBar extends StatelessWidget {
   final ValueNotifier<int> selectedIndexNotifier;
   final PageController pageController;
-  const CustomNavBar(
-      {super.key,
-      required this.selectedIndexNotifier,
-      required this.pageController});
+
+  const CustomNavBar({
+    super.key,
+    required this.selectedIndexNotifier,
+    required this.pageController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -80,40 +62,34 @@ class CustomNavBar extends StatelessWidget {
       child: Container(
         height: 85.h,
         width: 245.w,
-        margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 0),
+        margin: const EdgeInsets.symmetric(horizontal: 18),
         decoration: BoxDecoration(
           color: const Color.fromRGBO(79, 79, 79, 0.11),
           borderRadius: BorderRadius.circular(35),
-          // boxShadow: const [
-          //   BoxShadow(
-          //     color: Colors.black26,
-          //     blurRadius: 10,
-          //     offset: Offset(0, 4),
-          //   ),
-          // ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            NavBarItem(
-              imagePath: 'assets/icon/ticket.png',
-              index: 0,
-              notifier: selectedIndexNotifier,
-              pageController: pageController,
-            ),
-            NavBarItem(
-              imagePath: 'assets/icon/home.png',
-              index: 1,
-              notifier: selectedIndexNotifier,
-              pageController: pageController,
-            ),
-            NavBarItem(
-              imagePath: 'assets/icon/profile.png',
-              index: 2,
-              notifier: selectedIndexNotifier,
-              pageController: pageController,
-              isCenterIcon: true,
-            ),
+          NavBarItem(
+  imagePath: 'assets/icon/ticket.png',
+  index: 0, // First item
+  notifier: selectedIndexNotifier,
+  pageController: pageController,
+),
+NavBarItem(
+  imagePath: 'assets/icon/home.png',
+  index: 1, // Second item
+  notifier: selectedIndexNotifier,
+  pageController: pageController,
+),
+NavBarItem(
+  imagePath: 'assets/icon/profile.png',
+  index: 2, // Third item
+  notifier: selectedIndexNotifier,
+  pageController: pageController,
+  isCenterIcon: true,
+),
+
           ],
         ),
       ),
@@ -149,7 +125,7 @@ class NavBarItem extends StatelessWidget {
             notifier.value = index;
             pageController.animateToPage(
               index,
-              duration: const Duration(milliseconds: 800),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           },
@@ -157,41 +133,24 @@ class NavBarItem extends StatelessWidget {
             width: 70.w,
             height: 72.h,
             decoration: BoxDecoration(
-              color: !isSelected
-                  ? const Color.fromRGBO(255, 255, 255, 0.22)
-                  : const Color.fromRGBO(253, 253, 253, 1),
+              color: isSelected
+                  ? const Color.fromRGBO(253, 253, 253, 1)
+                  : const Color.fromRGBO(255, 255, 255, 0.22),
               shape: BoxShape.circle,
-
-              border: BoxBorder.lerp(
-                Border.all(
-                  color: const Color.fromRGBO(247, 247, 247, 1),
-                  width: 0,
-                ),
-                Border.all(
-                  color: Colors.white,
-                  width: 1,
-                ),
-                1,
+              border: Border.all(
+                color: isSelected
+                    ? Colors.white
+                    : const Color.fromRGBO(247, 247, 247, 1),
+                width: 1,
               ),
-              // boxShadow: isSelected
-              //     ? const [
-              //         BoxShadow(
-              //           color: Colors.black26,
-              //           blurRadius: 8,
-              //           offset: Offset(0, 4),
-              //         ),
-              //       ]
-              //     : null,
             ),
             child: Center(
-              child: SizedBox(
+              child: Image.asset(
+                imagePath,
                 width: 20.w,
                 height: 22.h,
-                child: Image.asset(
-                  imagePath,
-                  color: Colors.black,
-                  fit: BoxFit.contain,
-                ),
+                color: Colors.black,
+                fit: BoxFit.contain,
               ),
             ),
           ),

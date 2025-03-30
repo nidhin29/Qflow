@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/Application/Feedback/feedback_cubit.dart';
 
 class FeedbackPage extends StatelessWidget {
@@ -46,24 +47,59 @@ class FeedbackPage extends StatelessWidget {
                 margin: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: TextField(
-                  maxLines: 5,
+                child: TextFormField(
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  maxLines: 7,
                   controller: feedbackController,
                   decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Write your feedback here',
-                  ),
+                      contentPadding: EdgeInsets.all(10),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                      hintText: 'Write your feedback here',
+                      hintStyle: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                      )),
                 ),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  BlocProvider.of<FeedbackCubit>(context)
-                      .submitFeedback(feedbackController.text);
-                },
-                child: const Text('Submit'),
-              )
+              TextButton(
+                  onPressed: () {
+                    if (feedbackController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please enter your feedback'),
+                        ),
+                      );
+                      return;
+                    }
+                    BlocProvider.of<FeedbackCubit>(context, listen: false)
+                        .submitFeedback(feedbackController.text);
+                  },
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(346.w, 54.82.h)),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9.84.r),
+                      side: const BorderSide(color: Colors.black),
+                    )),
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                  ),
+                  child: Text('Submit',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black))),
             ],
           ),
         );

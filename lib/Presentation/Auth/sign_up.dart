@@ -38,6 +38,12 @@ class SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+  final ValueNotifier<bool> obtext = ValueNotifier<bool>(false);
+
+  void passwordFunction() {
+    obtext.value = !obtext.value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +81,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                     },
                     (r) {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const MainScreen(),
+                        builder: (context) =>  MainScreen(),
                       ));
                     },
                   ));
@@ -86,231 +92,327 @@ class SignUpScreenState extends State<SignUpScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return Column(
-            children: [
-              SizedBox(
-                height: 65.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 7.w),
-                child: Text('Sign Up',
-                    style: TextStyle(
-                        fontSize: 21.45.sp,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black)),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Padding(
-                  padding: EdgeInsets.only(left: 32.w, right: 32.w),
-                  child: Column(children: [
-                    TextFormField(
-                      controller: emailController,
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        labelStyle: TextStyle(
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 65.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 7.w),
+                  child: Text('Sign Up',
+                      style: TextStyle(
+                          fontSize: 21.45.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black)),
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                Padding(
+                    padding: EdgeInsets.only(left: 32.w, right: 32.w),
+                    child: Column(children: [
+                      TextFormField(
+                        style: TextStyle(
                           fontSize: 12.sp,
                           color: Colors.black,
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                        labelText: 'Username',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: phoneNumberController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        labelText: 'Phone number',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: addressController,
-                      decoration: InputDecoration(
-                        labelText: 'Address',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: firstNameController,
-                      decoration: InputDecoration(
-                        labelText: 'First name',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: lastNameController,
-                      decoration: InputDecoration(
-                        labelText: 'Last name',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    TextFormField(
-                      controller: dobController,
-                      decoration: InputDecoration(
-                        labelText: 'Date of birth',
-                        labelStyle: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.black,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.black),
-                          borderRadius: BorderRadius.circular(9.84.r),
-                        ),
-                      ),
-                    ),
-                    kheight15,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Already have an account?',
-                            style: TextStyle(
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black)),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignInScreen()));
-                            },
-                            child: Text('Sign In',
-                                style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.grey)))
-                      ],
-                    ),
-                    kheight20,
-                    TextButton(
-                        onPressed: () {
-                          BlocProvider.of<SignupCubit>(context).signUp(
-                            email: emailController.text,
-                            password: passwordController.text,
-                            username: usernameController.text,
-                            phoneNumber: phoneNumberController.text,
-                            address: addressController.text,
-                            firstName: firstNameController.text,
-                            lastName: lastNameController.text,
-                            dateOfBirth: dobController.text,
-                            deviceid: 'deviceid',
-                          );
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Email cannot be empty';
+                          } else if (!value.contains('@')) {
+                            return 'Please enter a valid email';
+                          }
+                          return null;
                         },
-                        style: ButtonStyle(
-                          minimumSize:
-                              WidgetStateProperty.all(Size(346.w, 54.82.h)),
-                          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                        controller: emailController,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          errorStyle: TextStyle(fontSize: 10),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
                             borderRadius: BorderRadius.circular(9.84.r),
-                            side: const BorderSide(
-                                color: Colors.black), // Border color
-                          )),
-                          backgroundColor:
-                              WidgetStateProperty.all(Colors.white),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
                         ),
-                        child: Text('Continue',
-                            style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black))),
-                  ])),
-            ],
+                      ),
+                      kheight15,
+                      ValueListenableBuilder(
+                        valueListenable: obtext,
+                        builder: (context, value, child) => TextFormField(
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter some text';
+                            } else if (value.length < 3) {
+                              return 'Password must be at least 8 characters';
+                            } else if (!value.contains(RegExp(r'[0-9]'))) {
+                              return 'Password must contain a number';
+                            }
+                            //  else if (!value
+                            //     .contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                            //   return 'Password must contain a special character';
+                            // }
+                            return null;
+                          },
+                          obscureText: value,
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            errorStyle: TextStyle(fontSize: 10),
+                            suffixIcon: IconButton(
+                              onPressed: passwordFunction,
+                              icon: Icon(value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            ),
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              fontSize: 12.sp,
+                              color: Colors.black,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(9.84.r),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(9.84.r),
+                            ),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                          labelText: 'Username',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: phoneNumberController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: 'Phone number',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: addressController,
+                        decoration: InputDecoration(
+                          labelText: 'Address',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: firstNameController,
+                        decoration: InputDecoration(
+                          labelText: 'First name',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: lastNameController,
+                        decoration: InputDecoration(
+                          labelText: 'Last name',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
+                        controller: dobController,
+                        decoration: InputDecoration(
+                          labelText: 'Date of birth',
+                          labelStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                        ),
+                      ),
+                      kheight15,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Already have an account?',
+                              style: TextStyle(
+                                  fontSize: 10.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black)),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SignInScreen()));
+                              },
+                              child: Text('Sign In',
+                                  style: TextStyle(
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: Colors.grey)))
+                        ],
+                      ),
+                      kheight20,
+                      TextButton(
+                          onPressed: () {
+                            if (emailController.text.isEmpty ||
+                                passwordController.text.isEmpty ||
+                                usernameController.text.isEmpty ||
+                                phoneNumberController.text.isEmpty ||
+                                addressController.text.isEmpty ||
+                                firstNameController.text.isEmpty ||
+                                lastNameController.text.isEmpty ||
+                                dobController.text.isEmpty) {
+                              displaySnackBar(
+                                  context: context,
+                                  text: "Please fill all the fields");
+                            } else {
+                              BlocProvider.of<SignupCubit>(context).signUp(
+                                email: emailController.text,
+                                password: passwordController.text,
+                                username: usernameController.text,
+                                phoneNumber: phoneNumberController.text,
+                                address: addressController.text,
+                                firstName: firstNameController.text,
+                                lastName: lastNameController.text,
+                                dateOfBirth: dobController.text,
+                                deviceid: 'deviceid',
+                              );
+                            }
+                          },
+                          style: ButtonStyle(
+                            minimumSize:
+                                WidgetStateProperty.all(Size(346.w, 54.82.h)),
+                            shape:
+                                WidgetStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(9.84.r),
+                              side: const BorderSide(
+                                  color: Colors.black), // Border color
+                            )),
+                            backgroundColor:
+                                WidgetStateProperty.all(Colors.white),
+                          ),
+                          child: Text('Continue',
+                              style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black))),
+                      kheight20,
+                      kheight20,
+                      kheight20,
+                      kheight10
+                    ])),
+              ],
+            ),
           );
         },
       ),

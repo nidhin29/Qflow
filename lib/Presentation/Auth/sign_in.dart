@@ -35,9 +35,11 @@ class SignInScreen extends StatelessWidget {
       body: BlocListener<LoggedinCubit, LoggedinState>(
         listener: (context, state) {
           if (state.value) {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const MainScreen(),
-            ));
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+              builder: (context) =>  MainScreen(),
+              
+            ),(route) => false
+            );
           }
         },
         child: BlocConsumer<SigninCubit, SigninState>(
@@ -72,9 +74,10 @@ class SignInScreen extends StatelessWidget {
                         }
                       },
                       (r) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const MainScreen(),
-                        ));
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                          builder: (context) =>  MainScreen(),
+                        ),(route)=> false
+                        );
                       },
                     ));
           },
@@ -104,6 +107,10 @@ class SignInScreen extends StatelessWidget {
                     padding: EdgeInsets.only(left: 32.w, right: 32.w),
                     child: Column(children: [
                       TextFormField(
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                        ),
                         controller: emailController,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: (value) {
@@ -115,6 +122,7 @@ class SignInScreen extends StatelessWidget {
                           return null;
                         },
                         decoration: InputDecoration(
+                          errorStyle: TextStyle(fontSize: 10),
                           labelText: 'Email',
                           labelStyle: TextStyle(
                             fontSize: 12.sp,
@@ -128,6 +136,14 @@ class SignInScreen extends StatelessWidget {
                             borderSide: const BorderSide(color: Colors.black),
                             borderRadius: BorderRadius.circular(9.84.r),
                           ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(9.84.r),
+                          ),
                         ),
                       ),
                       kheight15,
@@ -135,6 +151,10 @@ class SignInScreen extends StatelessWidget {
                         valueListenable: obtext,
                         builder: (context, value, child) {
                           return TextFormField(
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: Colors.black,
+                            ),
                             controller: passwordController,
                             obscureText: !value,
                             autovalidateMode:
@@ -154,6 +174,7 @@ class SignInScreen extends StatelessWidget {
                               return null;
                             },
                             decoration: InputDecoration(
+                              errorStyle: TextStyle(fontSize: 10),
                               labelText: 'Password',
                               labelStyle: TextStyle(
                                 fontSize: 12.sp,
@@ -169,6 +190,16 @@ class SignInScreen extends StatelessWidget {
                                     const BorderSide(color: Colors.black),
                                 borderRadius: BorderRadius.circular(9.84.r),
                               ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Colors.black),
+                                borderRadius: BorderRadius.circular(9.84.r),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide:
+                                    const BorderSide(color: Colors.black),
+                                borderRadius: BorderRadius.circular(9.84.r),
+                              ),
                               suffixIcon: IconButton(
                                 onPressed: passwordFunction,
                                 icon: Icon(value
@@ -180,17 +211,6 @@ class SignInScreen extends StatelessWidget {
                         },
                       ),
                       kheight15,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('Forgot Password?',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black)),
-                        ],
-                      ),
                       kheight20,
                       TextButton(
                           onPressed: () {
@@ -204,6 +224,7 @@ class SignInScreen extends StatelessWidget {
                                   .getDeviceToken()
                                   .then((value) {
                                 log(value);
+                                // ignore: use_build_context_synchronously
                                 BlocProvider.of<SigninCubit>(context).signIn(
                                     emailController.text,
                                     passwordController.text,

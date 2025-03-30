@@ -105,18 +105,10 @@ class HomeScreen extends StatelessWidget {
                                   (failure) => const Text(''),
                                   (r) {
                                     return Text(
-                                      r.name!,
-                                      style: GoogleFonts.dmSans(
-                                        textStyle: TextStyle(
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.w700,
-                                          color: const Color.fromRGBO(
-                                            125,
-                                            125,
-                                            125,
-                                            1,
-                                          ),
-                                        ),
+                                      r.name!.toUpperCase(),
+                                      style: TextStyle(
+                                        fontSize: 21.45.sp,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     );
                                   },
@@ -168,8 +160,16 @@ class HomeScreen extends StatelessWidget {
                     },
                     builder: (context, state) {
                       if (state.isLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
+                        return Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            width: 345.w,
+                            height: 250.h,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
                         );
                       }
                       return state.bookings.fold(
@@ -180,20 +180,34 @@ class HomeScreen extends StatelessWidget {
                           (failure) => const Center(
                             child: CircularProgressIndicator(),
                           ),
-                          (r) => r.bookings == []
-                              ? Text('No Appointments')
+                          (r) => r.bookings!.isEmpty
+                              ? Column(
+                                  children: [
+                                    Container(
+                                      width: 348.w,
+                                      height: 250.h,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/icon/noapp.jpg')),
+                                      ),
+                                    )
+                                  ],
+                                )
                               : Column(
                                   children: [
                                     SizedBox(
                                       height: 250.h,
                                       child: PageView.builder(
-                                        controller: pageController,
-                                        itemCount: r.bookings!.length,
-                                        onPageChanged: (index) {
-                                          currentPageNotifier.value = index;
-                                        },
-                                        itemBuilder: (context, index) =>
-                                            _buildCard(
+                                          controller: pageController,
+                                          itemCount: r.bookings!.length,
+                                          onPageChanged: (index) {
+                                            currentPageNotifier.value = index;
+                                          },
+                                          itemBuilder: (context, index) {
+                                            print(r.bookings![index]
+                                                .currentConsultNo);
+                                            return _buildCard(
                                                 r.bookings![index]
                                                     .appointmentDate!,
                                                 r.bookings![index].time!,
@@ -204,8 +218,8 @@ class HomeScreen extends StatelessWidget {
                                                 r.bookings![index].startedsts!,
                                                 r.bookings![index]
                                                         .currentConsultNo ??
-                                                    0),
-                                      ),
+                                                    0);
+                                          }),
                                     ),
                                     const SizedBox(height: 20),
 
@@ -250,7 +264,7 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  kheight10,
+                  kheight20,
                   Text('Previous Appointments',
                       style: GoogleFonts.dmSans(
                           textStyle: TextStyle(
@@ -288,8 +302,16 @@ class HomeScreen extends StatelessWidget {
                     },
                     builder: (context, state) {
                       if (state.isLoading) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
+                        return Shimmer.fromColors(
+                          baseColor: Colors.grey[300]!,
+                          highlightColor: Colors.grey[100]!,
+                          child: Container(
+                            width: 345.w,
+                            height: 250.h,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(12)),
+                          ),
                         );
                       }
                       return state.prevBookings.fold(
@@ -301,11 +323,18 @@ class HomeScreen extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           ),
                           (r) => r.bookings!.isEmpty
-                              ? Center(
-                                  child: Text(
-                                    'No Previous Appointments',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
+                              ? Column(
+                                  children: [
+                                    Container(
+                                      width: 348.w,
+                                      height: 250.h,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/icon/noapp.jpg')),
+                                      ),
+                                    )
+                                  ],
                                 )
                               : ListView.separated(
                                   physics: const NeverScrollableScrollPhysics(),
@@ -412,7 +441,9 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     },
-                  )
+                  ),
+                  kheight100,
+                  kheight10,
                 ],
               ),
             ),
@@ -530,7 +561,7 @@ class HomeScreen extends StatelessWidget {
                 kheight5,
                 (status != 0)
                     ? Padding(
-                        padding: const EdgeInsets.only(left: 4),
+                        padding: const EdgeInsets.only(left: 6),
                         child: BookTileWidget(
                             heading: 'Current No',
                             content: currentNo.toString()),

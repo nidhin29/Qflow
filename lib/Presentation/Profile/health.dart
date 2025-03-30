@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hospital/Application/Feedback/feedback_cubit.dart';
 import 'package:hospital/Domain/feedback/feedback_service.dart';
+import 'package:hospital/Presentation/common/snackbar.dart';
 
 class HealthPage extends StatelessWidget {
   const HealthPage({super.key});
@@ -50,64 +52,157 @@ class HealthPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextField(
+                  TextFormField(
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.black,
+                    ),
                     controller: sbpController,
                     decoration: InputDecoration(
                       labelText: 'Systolic BP',
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
-                  TextField(
+                  TextFormField(
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.black,
+                    ),
                     controller: dbpController,
                     decoration: InputDecoration(
                       labelText: 'Diastolic BP',
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
-                  TextField(
+                  TextFormField(
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.black,
+                    ),
                     controller: sugarFastingController,
                     decoration: InputDecoration(
                       labelText: 'Sugar (Fasting)',
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
-                  TextField(
+                  TextFormField(
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.black,
+                    ),
                     controller: sugarAfterMealController,
                     decoration: InputDecoration(
                       labelText: 'Sugar (After Meal)',
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
-                  TextField(
-                    controller: pulseController,
+                  TextFormField(
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: Colors.black,
+                    ),
+                    controller: sbpController,
                     decoration: InputDecoration(
                       labelText: 'Pulse',
-                      border: OutlineInputBorder(),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
                   TextField(
                     controller: notesController,
                     decoration: InputDecoration(
-                      labelText: 'Notes',
-                      border: OutlineInputBorder(),
+                      hintText: 'Notes',
+                      hintStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      labelStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: Colors.black,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.black),
+                        borderRadius: BorderRadius.circular(9.84.r),
+                      ),
                     ),
                     maxLines: 4,
                   ),
-                  SizedBox(height: 16),
+                  SizedBox(height: 28),
                   Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        BlocProvider.of<FeedbackCubit>(context)
+                    child:   TextButton(
+                  onPressed: () {
+                    if (sbpController.text.isEmpty ||
+                        dbpController.text.isEmpty ||
+                        sugarFastingController.text.isEmpty ||
+                        sugarAfterMealController.text.isEmpty ||
+                        pulseController.text.isEmpty) {
+                     displaySnackBar(context: context, text: 'Please fill all the fields');
+                      return;
+                    }
+                  BlocProvider.of<FeedbackCubit>(context)
                             .submitHealth(Health(
                           notesController.text,
                           sbp: sbpController.text,
@@ -116,9 +211,20 @@ class HealthPage extends StatelessWidget {
                           fsugar: sugarFastingController.text,
                           psugar: sugarAfterMealController.text,
                         ));
-                      },
-                      child: const Text('Submit'),
-                    ),
+                  },
+                  style: ButtonStyle(
+                    minimumSize: WidgetStateProperty.all(Size(346.w, 54.82.h)),
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9.84.r),
+                      side: const BorderSide(color: Colors.black),
+                    )),
+                    backgroundColor: WidgetStateProperty.all(Colors.white),
+                  ),
+                  child: Text('Submit',
+                      style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black))),
                   )
                 ],
               ),

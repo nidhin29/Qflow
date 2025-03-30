@@ -14,7 +14,6 @@ class PrescriptionCubit extends Cubit<PrescriptionState> {
   final PresciptionService _presciptionService;
   PrescriptionCubit(this._presciptionService)
       : super(PrescriptionState.initial());
-      
   getPrescription(int opTicketNo) async {
     emit(state.copyWith(isLoading: true));
     final result = await _presciptionService.getPresciptions(opTicketNo);

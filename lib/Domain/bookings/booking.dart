@@ -36,7 +36,7 @@ class Booking {
         status: json['status'] as int?,
         createdAt: json['created_at'] as String?,
         startedsts: json['started_sts'] as int?,
-        currentConsultNo: json['current_ConsultNumber'] as int?,
+        currentConsultNo: json['current_ConsltNumber'] as int?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,6 +50,6 @@ class Booking {
         'status': status,
         'created_at': createdAt,
         'started_sts': startedsts,
-        'current_ConsultNumber': currentConsultNo,
+        'current_ConsltNumber': currentConsultNo,
       };
 }

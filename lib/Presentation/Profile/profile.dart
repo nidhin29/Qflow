@@ -20,29 +20,20 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late PageController _pageController;
   bool _isEditMode = false;
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProfileCubit>(context).getProfile();
-    _pageController = PageController(
-      initialPage: 0,
-      viewportFraction: 0.31,
-    );
+    Future.microtask(() =>
+        // ignore: use_build_context_synchronously
+        BlocProvider.of<ProfileCubit>(context, listen: false).getProfile());
   }
 
   void _toggleEditMode() {
     setState(() {
       _isEditMode = !_isEditMode;
     });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 
   @override
@@ -129,13 +120,6 @@ Widget _buildAvatarTab(Function() onTap) {
     padding: EdgeInsets.symmetric(horizontal: 31.w),
     child: BlocConsumer<ProfileCubit, ProfileState>(
       listener: (context, state) {
-        state.isFailureOrSuccessForDelete.fold(
-          () {},
-          (either) => either.fold(
-            (failure) {},
-            (r) {},
-          ),
-        );
         state.isFailureOrSuccessForGet.fold(
           () {},
           (either) => either.fold(
@@ -167,34 +151,11 @@ Widget _buildAvatarTab(Function() onTap) {
           ),
         );
 
-        state.isFailureOrSuccessForDelete.fold(
-          () {},
-          (either) => either.fold(
-            (failure) {
-              if (!state.isLoading) {
-                if (failure == const MainFailure.serverFailure()) {
-                  displaySnackBar(context: context, text: "Server is down");
-                } else if (failure == const MainFailure.clientFailure()) {
-                  displaySnackBar(
-                      context: context,
-                      text: "Something wrong with your network");
-                } else {
-                  displaySnackBar(
-                      context: context, text: "Something Unexpected Happened");
-                }
-              }
-            },
-            (r) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => SignInScreen(),
-              ));
-            },
-          ),
-        );
+       
       },
       builder: (context, state) {
         if (state.isLoading) {
-          Center(
+          return Center(
             child: CircularProgressIndicator(),
           );
         }
@@ -204,7 +165,10 @@ Widget _buildAvatarTab(Function() onTap) {
                 ), (either) {
           if (either.isLeft()) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: Text(
+                "Error loading profile",
+                style: TextStyle(fontSize: 16.sp, color: Colors.red),
+              ),
             );
           }
           return Column(
@@ -290,6 +254,10 @@ Widget _buildAvatarTab(Function() onTap) {
               ElevatedButton(
                 onPressed: () {
                   BlocProvider.of<ProfileCubit>(context).deleteEmail();
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => SignInScreen()),
+                      (route) => false);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(325.w, 41.h),

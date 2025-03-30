@@ -21,21 +21,15 @@ import 'package:injectable/injectable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await configureInjection(Environment.prod);
   runApp(const MyApp());
 }
 
-
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-    
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   print(message.notification!.title.toString());
 }
 
@@ -72,7 +66,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<FeedbackCubit>(
             create: (context) => getIt<FeedbackCubit>(),
           ),
-            BlocProvider<PrescriptionCubit>(
+          BlocProvider<PrescriptionCubit>(
             create: (context) => getIt<PrescriptionCubit>(),
           ),
         ],
@@ -81,6 +75,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: SignInScreen(),
           theme: ThemeData(
+            progressIndicatorTheme:
+                ProgressIndicatorThemeData(color: Colors.blue),
             fontFamily: 'MonumentExtended',
             textSelectionTheme: const TextSelectionThemeData(
               cursorColor: Colors.grey,
