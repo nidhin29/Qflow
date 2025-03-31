@@ -1,0 +1,2 @@
+C:/Users/nidhi/hospital/android/app/.cxx/RelWithDebInfo/15z2k2h4/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/nidhi/hospital/android/app/.cxx/RelWithDebInfo/15z2k2h4/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -6,6 +6,9 @@ import 'package:hospital/Domain/Failure/failure.dart';
 import 'package:hospital/Domain/SignUp/sign_up_service.dart';
 import 'package:hospital/constants/const.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Domain/TokenManager/token_manager.dart' show TokenManager;
 
 @LazySingleton(as: SignUpService)
 class SignUpRepo implements SignUpService {
@@ -38,6 +41,9 @@ class SignUpRepo implements SignUpService {
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+         TokenManager.instance.setEmail(email);
+            final sharedPref = await SharedPreferences.getInstance();
+    await sharedPref.setString('email', TokenManager.instance.email!);
         log(response.data.toString());
         return const Right(unit);
       } else {

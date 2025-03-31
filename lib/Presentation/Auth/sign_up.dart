@@ -198,6 +198,14 @@ class SignUpScreenState extends State<SignUpScreen> {
                               borderSide: const BorderSide(color: Colors.black),
                               borderRadius: BorderRadius.circular(9.84.r),
                             ),
+                              errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(9.84.r),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(9.84.r),
+                            ),
                           ),
                         ),
                       ),

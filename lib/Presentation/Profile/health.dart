@@ -149,7 +149,7 @@ class HealthPage extends StatelessWidget {
                       fontSize: 12.sp,
                       color: Colors.black,
                     ),
-                    controller: sbpController,
+                    controller: pulseController,
                     decoration: InputDecoration(
                       labelText: 'Pulse',
                       labelStyle: TextStyle(
