@@ -246,6 +246,9 @@ https://github.com/user-attachments/assets/e252eecd-34d5-415b-ad27-bb34344a2447
 - **Notification System**: Push notifications for important updates
 
 ---
+**Ready to test the app?**
+👉 [Download APK from Google Drive](https://drive.google.com/file/d/15nVUYoJMO8O4K4NYsCl2f04z_IcBJvDW/view?usp=drive_link)
+
 
 ## 🎨 UI/UX Design
 
