@@ -1,0 +1,2 @@
+E:/Project_files_1/hospital/android/app/.cxx/RelWithDebInfo/182v5w53/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/Project_files_1/hospital/android/app/.cxx/RelWithDebInfo/182v5w53/armeabi-v7a/CMakeFiles/rebuild_cache.dir
