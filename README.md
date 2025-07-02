@@ -234,13 +234,9 @@ lib/
 ### Authentication System
 - **User Registration**: Complete profile creation with medical details
 - **Secure Login**: Email/password authentication with session management
-- **Password Recovery**: Secure password reset functionality
-- **Device Management**: Multi-device login support
 
 ### Appointment Management
-- **Doctor Discovery**: Search and filter doctors by specialty
-- **Smart Booking**: Intelligent scheduling with conflict resolution
-- **Payment Processing**: Secure payment integration
+
 - **Confirmation System**: Automated booking confirmations
 
 ### Medical Records
@@ -252,7 +248,6 @@ lib/
 ### Communication & Feedback
 - **Patient Feedback**: Rating and review system for doctors
 - **Notification System**: Push notifications for important updates
-- **Support System**: In-app support and help functionality
 
 ---
 
