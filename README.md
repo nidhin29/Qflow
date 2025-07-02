@@ -137,6 +137,9 @@ lib/
 - **Error Handling** with comprehensive failure management
 
 ---
+## Usage Video
+
+https://github.com/user-attachments/assets/e252eecd-34d5-415b-ad27-bb34344a2447
 
 ## 🚀 Getting Started
 
