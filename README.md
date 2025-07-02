@@ -201,8 +201,6 @@ https://github.com/user-attachments/assets/e252eecd-34d5-415b-ad27-bb34344a2447
 ## 📱 App Highlights
 
 ### Smart Healthcare Features
-- **Intelligent Appointment Scheduling**: AI-powered booking system
-- **Real-time Doctor Availability**: Live updates on doctor schedules
 - **Digital Prescription Management**: Paperless prescription handling
 - **Comprehensive Medical History**: Complete patient record management
 - **Multi-device Synchronization**: Access from anywhere, anytime
@@ -217,17 +215,12 @@ https://github.com/user-attachments/assets/e252eecd-34d5-415b-ad27-bb34344a2447
 ### Healthcare-Specific Innovations
 - **Symptom Tracking**: Detailed symptom logging before appointments
 - **Appointment History**: Complete consultation history
-- **Prescription Reminders**: Automated medication alerts
-- **Doctor Ratings**: Patient feedback and rating system
+- **Doctor Ratings**: Patient feedback system
 
 ---
 
 ## 🔐 Security & Privacy
 
-- **Secure Authentication**: Firebase-powered user authentication
-- **Data Encryption**: All data encrypted in transit and at rest
-- **Privacy Compliance**: HIPAA-compliant data handling
-- **Device Security**: Device-specific authentication tokens
 - **API Security**: Secure RESTful API with proper error handling
 
 ---
