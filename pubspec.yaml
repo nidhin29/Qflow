@@ -73,6 +73,7 @@ flutter:
     - assets/icon/ticket.png
     - assets/icon/home.png
     - assets/icon/start.png
+    - assets/icon/icon.png
     - assets/icon/search.png
     - assets/icon/search1.png
     - assets/icon/noapp.jpg

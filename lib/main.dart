@@ -14,7 +14,7 @@ import 'package:hospital/Application/profile/profile_cubit.dart';
 
 import 'package:hospital/Application/signin/signin_cubit.dart';
 import 'package:hospital/Application/signup/signup_cubit.dart';
-import 'package:hospital/Presentation/Auth/sign_in.dart';
+import 'package:hospital/Presentation/Splash/splash.dart';
 import 'package:hospital/core/injectable/injectable.dart';
 import 'package:hospital/firebase_options.dart';
 import 'package:injectable/injectable.dart';
@@ -71,9 +71,9 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          title: 'Hospital',
+          title: 'Q Flow',
           debugShowCheckedModeBanner: false,
-          home: SignInScreen(),
+          home: SplashScreen(),
           theme: ThemeData(
             progressIndicatorTheme:
                 ProgressIndicatorThemeData(color: Colors.blue),
