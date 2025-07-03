@@ -293,7 +293,7 @@ https://github.com/user-attachments/assets/e252eecd-34d5-415b-ad27-bb34344a2447
 
 ## 🤝 Contributing
 
-We welcome contributions from the healthcare and Flutter communities! Please feel free to submit issues, feature requests, or pull requests.
+Contributions are welcomed! Please feel free to submit issues, feature requests, or pull requests.
 
 ### Development Setup
 1. Fork the repository
