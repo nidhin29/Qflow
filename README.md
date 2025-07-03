@@ -311,12 +311,6 @@ We welcome contributions from the healthcare and Flutter communities! Please fee
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
 ## 👨‍💻 Developer
 
 Developed with ❤️ for better healthcare access
