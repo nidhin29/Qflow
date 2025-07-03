@@ -1,6 +1,6 @@
 # 🏥 Qflow - Digital Healthcare Management App
 
-**Qflow** is a comprehensive digital healthcare management application built with Flutter that revolutionizes the way patients interact with healthcare services. The app provides seamless appointment booking, prescription management, doctor consultations, and patient feedback systems, all powered by Firebase for real-time synchronization and secure data management.
+**Qflow** is a comprehensive digital healthcare management application built with Flutter that revolutionizes the way patients interact with healthcare services. The app provides seamless appointment booking, prescription management, doctor consultations, and patient feedback systems
 
 ---
 
